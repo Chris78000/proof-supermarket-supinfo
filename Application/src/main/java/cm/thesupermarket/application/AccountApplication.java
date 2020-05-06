@@ -18,8 +18,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.open.school.domain"})
-@EnableJpaRepositories(basePackages = {"com.open.school.repository"})
+@EntityScan(basePackages = {"cm.thesupermarket.domain"})
+@EnableJpaRepositories(basePackages = {"cm.thesupermarket.repository"})
 @PropertySource("classpath:application.properties")
 @EnableScheduling
 public class AccountApplication {

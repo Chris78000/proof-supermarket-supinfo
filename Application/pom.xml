@@ -8,4 +8,40 @@
     </parent>
     <artifactId>Application</artifactId>
     <packaging>jar</packaging>
+    <build>
+        <finalName>Account-Service</finalName>
+    </build>
+    
+    <dependencies>
+         <dependency>
+            <groupId>cm.thesupermarket</groupId>
+            <artifactId>Services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+         <dependency>
+            <groupId>cm.thesupermarket</groupId>
+            <artifactId>Controllers</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+         <dependency>
+            <groupId>cm.thesupermarket</groupId>
+            <artifactId>Models</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+         <dependency>
+            <groupId>cm.thesupermarket</groupId>
+            <artifactId>Domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+         <dependency>
+            <groupId>cm.thesupermarket</groupId>
+            <artifactId>Helpers</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+    
 </project>
