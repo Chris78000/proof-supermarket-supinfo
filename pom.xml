@@ -23,6 +23,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
+     <modules>
+        <module>Application</module>
+        <module>Controllers</module>
+        <module>Domain</module>
+        <module>Helpers</module>
+        <module>Models</module>
+        <module>Repository</module>
+        <module>Services</module>
+    </modules>
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -162,7 +172,5 @@
         
         </plugins>
     </build>
-    <modules>
-        <module>Application</module>
-    </modules>
+   
 </project>
