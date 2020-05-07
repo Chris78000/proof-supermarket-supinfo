@@ -6,11 +6,15 @@
 package cm.thesupermarket.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -18,6 +22,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.commons.lang.Validate;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Parameter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -54,6 +60,34 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<FidelityCardEntity> fidelityCardList;
+
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<ClientHasShippingAddressEntity> clientHasShippingAddressList;
+
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<ClientHasShippingCardEntity> clientHasShippingCardList;
+
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<ClientHasFavoritesEntity> clientHasFavoritesList;
+
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<ShippingCardEntity> shippingCardList;
+
+    public ClientEntity() {
+        this.fidelityCardList = new ArrayList<>();
+        this.clientHasShippingAddressList = new ArrayList<>();
+        this.shippingCardList = new ArrayList<>();
+        this.clientHasShippingCardList = new ArrayList<>();
+        this.clientHasFavoritesList = new ArrayList<>();
+    }
 
     public void setId(Long Id) {
         this.Id = Id;
