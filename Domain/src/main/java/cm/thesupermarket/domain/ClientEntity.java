@@ -12,14 +12,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import org.apache.commons.lang.Validate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -51,6 +55,29 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     )
     private Long Id;
 
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
+
+    @Column(name = "firstname", nullable = false, unique = true)
+    private String firstname;
+
+    @Column(name = "birthday", nullable = false, updatable = false)
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
+
+    @Column(name = "age", nullable = false, unique = true)
+    private int age;
+
+    @Column(name = "phone", nullable = false, unique = true)
+    private int phone;
+
+    @Email
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false, unique = true)
+    private String password;
+
     @Column(name = "creation_date", nullable = false, updatable = false)
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,6 +87,14 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "countryId", nullable = true)
+    private CountryEntity countryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sexId", nullable = false)
+    private SexEntity sexId;
 
     @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -73,7 +108,7 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientHasShippingCardEntity> clientHasShippingCardList;
 
-    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientHasFavoritesEntity> clientHasFavoritesList;
 
