@@ -57,10 +57,14 @@ public class ClientHasShippingCardEntity implements Serializable, Persistable<Lo
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shippingCardId", nullable = false, updatable = false)
+    private ShippingCardEntity shippingCardtId;
 
     public void setId(Long Id) {
         this.Id = Id;

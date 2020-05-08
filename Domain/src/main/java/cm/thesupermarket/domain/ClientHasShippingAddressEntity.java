@@ -61,6 +61,10 @@ public class ClientHasShippingAddressEntity implements Serializable, Persistable
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;
+    
+     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shippingAddressId", nullable = false, updatable = false)
+    private ShippingAddressEntity shippingAddressId;
 
     public void setId(Long Id) {
         this.Id = Id;

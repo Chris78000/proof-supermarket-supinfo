@@ -58,6 +58,16 @@ public class FidelityCardEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
+    @Column(name = "expired_date", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expiredDate;
+
+    @Column(name = "point", nullable = false, unique = false)
+    private String point;
+
+    @Column(name = "numero", nullable = false, unique = true)
+    private String numero;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;

@@ -61,6 +61,10 @@ public class ClientHasFavoritesEntity implements Serializable, Persistable<Long>
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "favoritesId", nullable = false, updatable = false)
+    private FavoritesEntity favoritesId;
 
     public void setId(Long Id) {
         this.Id = Id;
