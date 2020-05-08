@@ -60,6 +60,9 @@ public class FavoritesEntity implements Serializable, Persistable<Long> {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+    
+     @Column(name = "productsId", nullable = false, unique = false)
+    private Long productsId;
 
     @OneToMany(mappedBy = "favoritesId", cascade = CascadeType.ALL, orphanRemoval = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -83,6 +86,32 @@ public class FavoritesEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Long getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(Long productsId) {
+        this.productsId = productsId;
+    }
+
+    
+    
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {

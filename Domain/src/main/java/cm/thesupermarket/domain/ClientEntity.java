@@ -55,17 +55,17 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     )
     private Long Id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = false)
     private String name;
 
-    @Column(name = "firstname", nullable = false, unique = true)
+    @Column(name = "firstname", nullable = false, unique = false)
     private String firstname;
 
     @Column(name = "birthday", nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
-    @Column(name = "age", nullable = false, unique = true)
+    @Column(name = "age", nullable = false, unique = false)
     private int age;
 
     @Column(name = "phone", nullable = false, unique = true)
@@ -89,7 +89,7 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     private Date lastModifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "countryId", nullable = true)
+    @JoinColumn(name = "countryId", nullable = false)
     private CountryEntity countryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -138,11 +138,100 @@ public class ClientEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public CountryEntity getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(CountryEntity countryId) {
+        this.countryId = countryId;
+    }
+
+    public SexEntity getSexId() {
+        return sexId;
+    }
+
+    public void setSexId(SexEntity sexId) {
+        this.sexId = sexId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(sexId, "sexId can't be null");
+        Validate.notNull(countryId, "countryId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 

@@ -82,12 +82,17 @@ public class CountryEntity implements Serializable, Persistable<Long> {
     @Column(name = "description", nullable = true)
     private String description;
 
-    @OneToMany(mappedBy = "sexId", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, orphanRemoval = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientEntity> ClientEntityList;
 
+    @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private final List<ShippingAddressEntity> ShippingAddressEntityList;
+
     public CountryEntity() {
         this.ClientEntityList = new ArrayList<>();
+        this.ShippingAddressEntityList = new ArrayList<>();
     }
 
     @Override
@@ -100,6 +105,80 @@ public class CountryEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIso_code() {
+        return iso_code;
+    }
+
+    public void setIso_code(String iso_code) {
+        this.iso_code = iso_code;
+    }
+
+    public String getTel_indicative_code() {
+        return tel_indicative_code;
+    }
+
+    public void setTel_indicative_code(String tel_indicative_code) {
+        this.tel_indicative_code = tel_indicative_code;
+    }
+
+    public String getCurrency_name() {
+        return currency_name;
+    }
+
+    public void setCurrency_name(String currency_name) {
+        this.currency_name = currency_name;
+    }
+
+    public String getCurrency_symbol() {
+        return currency_symbol;
+    }
+
+    public void setCurrency_symbol(String currency_symbol) {
+        this.currency_symbol = currency_symbol;
+    }
+
+    public String getCurrency_code() {
+        return currency_code;
+    }
+
+    public void setCurrency_code(String currency_code) {
+        this.currency_code = currency_code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
+    
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {

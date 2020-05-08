@@ -12,8 +12,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -65,6 +68,16 @@ public class ShippingAddressEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
+    @Column(name = "zipCode", nullable = false, unique = false)
+    private String zipode;
+
+    @Column(name = "description", nullable = false, unique = false)
+    private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "countryId", nullable = false)
+    private CountryEntity countryId;
+
     public ShippingAddressEntity() {
         this.clientHasShippingAddressList = new ArrayList<>();
     }
@@ -83,11 +96,51 @@ public class ShippingAddressEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getZipode() {
+        return zipode;
+    }
+
+    public void setZipode(String zipode) {
+        this.zipode = zipode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public CountryEntity getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(CountryEntity countryId) {
+        this.countryId = countryId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(countryId, "countryId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 }

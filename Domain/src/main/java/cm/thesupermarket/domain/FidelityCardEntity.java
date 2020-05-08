@@ -58,18 +58,18 @@ public class FidelityCardEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
-    @Column(name = "expired_date", nullable = false, updatable = false)
+    @Column(name = "expired_date", nullable = false, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiredDate;
 
     @Column(name = "point", nullable = false, unique = false)
-    private String point;
+    private int point;
 
     @Column(name = "numero", nullable = false, unique = true)
     private String numero;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId", nullable = false, updatable = false)
+    @JoinColumn(name = "clientId", nullable = false, updatable = false, unique = true)
     private ClientEntity clientId;
 
     public void setId(Long Id) {
@@ -86,11 +86,59 @@ public class FidelityCardEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Date getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public ClientEntity getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientEntity clientId) {
+        this.clientId = clientId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(clientId, "clientId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 

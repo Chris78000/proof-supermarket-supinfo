@@ -50,7 +50,7 @@ public class BankCardEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    @Column(name = "last_modified_date", nullable = true, updatable = true)
+    @Column(name = "last_modified_date", nullable = false, updatable = true)
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;

@@ -57,13 +57,13 @@ public class ClientHasShippingAddressEntity implements Serializable, Persistable
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId", nullable = false, updatable = false)
+    @JoinColumn(name = "clientId", nullable = false, updatable = true)
     private ClientEntity clientId;
-    
-     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shippingAddressId", nullable = false, updatable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shippingAddressId", nullable = false, updatable = true)
     private ShippingAddressEntity shippingAddressId;
 
     public void setId(Long Id) {
@@ -80,11 +80,44 @@ public class ClientHasShippingAddressEntity implements Serializable, Persistable
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public ClientEntity getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientEntity clientId) {
+        this.clientId = clientId;
+    }
+
+    public ShippingAddressEntity getShippingAddressId() {
+        return shippingAddressId;
+    }
+
+    public void setShippingAddressId(ShippingAddressEntity shippingAddressId) {
+        this.shippingAddressId = shippingAddressId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(clientId, "clientId can't be null");
+        Validate.notNull(shippingAddressId, "shippingAddressId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 

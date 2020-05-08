@@ -70,6 +70,9 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;
 
+    @Column(name = "productsId", nullable = false, unique = false)
+    private String productsId;
+
     @OneToMany(mappedBy = "shippingCardId", cascade = CascadeType.ALL, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientHasShippingCardEntity> clientHasShippingCardList;
@@ -92,11 +95,43 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public ClientEntity getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientEntity clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(String productsId) {
+        this.productsId = productsId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(clientId, "clientId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 

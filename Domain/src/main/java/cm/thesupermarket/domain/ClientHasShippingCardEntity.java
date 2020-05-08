@@ -64,7 +64,7 @@ public class ClientHasShippingCardEntity implements Serializable, Persistable<Lo
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shippingCardId", nullable = false, updatable = false)
-    private ShippingCardEntity shippingCardtId;
+    private ShippingCardEntity shippingCardId;
 
     public void setId(Long Id) {
         this.Id = Id;
@@ -80,11 +80,44 @@ public class ClientHasShippingCardEntity implements Serializable, Persistable<Lo
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public ClientEntity getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientEntity clientId) {
+        this.clientId = clientId;
+    }
+
+    public ShippingCardEntity getShippingCardId() {
+        return shippingCardId;
+    }
+
+    public void setShippingCardId(ShippingCardEntity shippingCardId) {
+        this.shippingCardId = shippingCardId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(clientId, "clientId can't be null");
+        Validate.notNull(shippingCardId, "shippingCardId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 }

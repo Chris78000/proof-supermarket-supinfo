@@ -33,12 +33,11 @@ import org.springframework.data.domain.Persistable;
  *
  * @author ryank
  */
-
-@Entity(name="SexEntity")
-@Table(name="sex")
+@Entity(name = "SexEntity")
+@Table(name = "sex")
 public class SexEntity implements Persistable<Long>, Serializable {
 
- @Id
+    @Id
     @Column(nullable = false, name = "id")
     @GeneratedValue(generator = "ALERT_SEQ_GEN")
     @GenericGenerator(
@@ -62,12 +61,12 @@ public class SexEntity implements Persistable<Long>, Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
-     @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description", nullable = true)
     private String description;
-    
+
     @OneToMany(mappedBy = "sexId", cascade = CascadeType.ALL, orphanRemoval = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientEntity> ClientEntityList;
@@ -75,9 +74,7 @@ public class SexEntity implements Persistable<Long>, Serializable {
     public SexEntity() {
         this.ClientEntityList = new ArrayList<>();
     }
-    
-    
-    
+
     @Override
     public Long getId() {
         return Id;
@@ -86,6 +83,38 @@ public class SexEntity implements Persistable<Long>, Serializable {
     @Override
     public boolean isNew() {
         return Id == null;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @PrePersist

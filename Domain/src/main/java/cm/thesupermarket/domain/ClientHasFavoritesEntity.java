@@ -57,11 +57,11 @@ public class ClientHasFavoritesEntity implements Serializable, Persistable<Long>
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId", nullable = false, updatable = false)
     private ClientEntity clientId;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "favoritesId", nullable = false, updatable = false)
     private FavoritesEntity favoritesId;
@@ -80,11 +80,44 @@ public class ClientHasFavoritesEntity implements Serializable, Persistable<Long>
         return Id == null;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public ClientEntity getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientEntity clientId) {
+        this.clientId = clientId;
+    }
+
+    public FavoritesEntity getFavoritesId() {
+        return favoritesId;
+    }
+
+    public void setFavoritesId(FavoritesEntity favoritesId) {
+        this.favoritesId = favoritesId;
+    }
+
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-
+        Validate.notNull(clientId, "clientId can't be null");
+        Validate.notNull(favoritesId, "favoritesId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 }
