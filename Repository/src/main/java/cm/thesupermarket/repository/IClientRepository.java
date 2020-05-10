@@ -18,6 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository("IClientRepository")
 public interface IClientRepository extends JpaRepository<ClientEntity,Long>{
     
-    @Query(value="",nativeQuery=true)
-    public ClientEntity getClient();
+    
 }
