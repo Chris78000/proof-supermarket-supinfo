@@ -95,6 +95,10 @@ public class CountryEntity implements Serializable, Persistable<Long> {
         this.ShippingAddressEntityList = new ArrayList<>();
     }
 
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
     @Override
     public Long getId() {
         return Id;
@@ -177,8 +181,6 @@ public class CountryEntity implements Serializable, Persistable<Long> {
         this.description = description;
     }
 
-    
-    
     @PrePersist
     @PreUpdate
     protected void prePersistAndPreUpdate() {

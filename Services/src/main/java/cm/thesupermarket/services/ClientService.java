@@ -5,10 +5,12 @@
  */
 package cm.thesupermarket.services;
 
-import cm.thesupermarket.models.ClientModel;
+import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.models.ClientOutModel;
 import cm.thesupermarket.repository.IClientRepository;
 import dtoassembler.DtoToEntity;
 import dtoassembler.EntityToDto;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -51,32 +53,50 @@ public class ClientService implements IClient {
 
     @Override
     @Transactional
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String dataJson) {
+        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+        clientRepository.delete(clientE);
+
     }
 
     @Override
     @Transactional
-    public ClientModel create(String dataJson) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ClientOutModel create(String dataJson) {
+        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+        return entityToDto.buildClientDto(clientRepository.save(clientE));
     }
 
     @Override
     @Transactional
-    public ClientModel update(String dataJson) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ClientOutModel update(String dataJson) {
+        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+        return entityToDto.buildClientDto(clientRepository.save(clientE));
     }
 
     @Override
     @Transactional
-    public List<ClientModel> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<ClientOutModel> getAll(String dataJson) {
+        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
+        List<ClientEntity> clientE = clientRepository.findAll();
+        List<ClientOutModel> data = new ArrayList<>();
+        clientE.forEach((cnsmr) -> {
+            data.add(entityToDto.buildClientDto(cnsmr));
+        });
+
+        return data;
     }
 
     @Override
     @Transactional
-    public ClientModel getClientById(String dataJson) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ClientOutModel getClientById(String dataJson) {
+        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+        ClientEntity data = clientRepository.getOne(clientE.getId());
+        return entityToDto.buildClientDto(data);
+
     }
 
 }

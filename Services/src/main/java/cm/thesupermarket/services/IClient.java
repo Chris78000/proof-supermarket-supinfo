@@ -5,7 +5,7 @@
  */
 package cm.thesupermarket.services;
 
-import cm.thesupermarket.models.ClientModel;
+import cm.thesupermarket.models.ClientOutModel;
 import com.google.gson.Gson;
 import java.util.List;
 
@@ -15,14 +15,14 @@ import java.util.List;
  */
 public interface IClient {
 
-    public void delete(Long id);
+    public void delete(String dataJson);
 
-    public ClientModel create(String dataJson);
+    public ClientOutModel create(String dataJson);
 
-    public ClientModel update(String dataJson);
+    public ClientOutModel update(String dataJson);
 
-    public List<ClientModel> getAll();
+    public List<ClientOutModel> getAll(String dataJson);
 
-    public ClientModel getClientById(String dataJson);
+    public ClientOutModel getClientById(String dataJson);
     //        Inscription ins = new Gson().fromJson(json, Inscription.class);  convertir json en classe
 }

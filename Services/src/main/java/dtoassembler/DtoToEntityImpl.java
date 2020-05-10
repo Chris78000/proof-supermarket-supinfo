@@ -5,7 +5,12 @@
  */
 package dtoassembler;
 
-import cm.thesupermarket.models.ClientModel;
+import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.domain.CountryEntity;
+import cm.thesupermarket.domain.SexEntity;
+import cm.thesupermarket.helpers.EncrytedPasswordUtils;
+import cm.thesupermarket.models.ClientInModel;
+import cm.thesupermarket.models.ClientOutModel;
 import com.google.gson.Gson;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
@@ -16,17 +21,35 @@ import org.slf4j.LoggerFactory;
  * @author ryank
  */
 public class DtoToEntityImpl implements DtoToEntity {
-
+    
     protected final Logger log = LoggerFactory.getLogger(getClass());
-
+    
     public DtoToEntityImpl() {
     }
-
+    
     @Override
-    public ClientModel buildClientDto(String dataJson) {
+    public ClientEntity buildClientDto(String dataJson) {
         Validate.notNull(dataJson, "Data from client is null, can't DTO");
-        ClientModel data = new Gson().fromJson(dataJson, ClientModel.class);
-        return data;
+        ClientInModel data = new Gson().fromJson(dataJson, ClientInModel.class);
+        ClientEntity clientE = new ClientEntity();
+        clientE.setId(data.getId());
+        clientE.setName(data.getName());
+        clientE.setFirstname(data.getFirstname());
+        clientE.setEmail(data.getEmail());
+        clientE.setAge(data.getAge());
+        clientE.setPhone(data.getPhone());
+        clientE.setBirthday(data.getBirthday());
+        
+        SexEntity sexE = new SexEntity();
+        sexE.setId(data.getSexId());
+        clientE.setSexId(sexE);
+        
+        CountryEntity countryE = new CountryEntity();
+        countryE.setId(data.getCountryId());
+        clientE.setCountryId(countryE);
+        
+        clientE.setPassword(EncrytedPasswordUtils.encrytePassword(data.getPassword()));
+        return clientE;
     }
-
+    
 }

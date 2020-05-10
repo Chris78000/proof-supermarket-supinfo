@@ -75,6 +75,11 @@ public class SexEntity implements Persistable<Long>, Serializable {
         this.ClientEntityList = new ArrayList<>();
     }
 
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
+    
     @Override
     public Long getId() {
         return Id;

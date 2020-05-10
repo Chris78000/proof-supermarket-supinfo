@@ -5,10 +5,15 @@
  */
 package dtoassembler;
 
+import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.models.ClientOutModel;
+
 /**
  *
  * @author ryank
  */
 public interface EntityToDto {
+
+    public ClientOutModel buildClientDto(ClientEntity clientE);
     
 }

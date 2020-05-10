@@ -13,10 +13,9 @@ import javax.validation.constraints.NotNull;
  *
  * @author ryank
  */
-
 @NotNull
 @NotEmpty
-public class ClientModel {
+public class ClientOutModel {
 
     private Long id;
     private String name;
@@ -25,8 +24,10 @@ public class ClientModel {
     private int age;
     private int phone;
     private String email;
+    private Date createdDate;
+    private Date lastUpdate;
 
-    public ClientModel() {
+    public ClientOutModel() {
     }
 
     public Long getId() {
@@ -83,6 +84,22 @@ public class ClientModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
 }

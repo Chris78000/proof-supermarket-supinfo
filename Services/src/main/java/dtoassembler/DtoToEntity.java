@@ -5,7 +5,8 @@
  */
 package dtoassembler;
 
-import cm.thesupermarket.models.ClientModel;
+import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.models.ClientOutModel;
 import com.google.gson.Gson;
 
 /**
@@ -13,6 +14,6 @@ import com.google.gson.Gson;
  * @author ryank
  */
 public interface DtoToEntity {
-    public ClientModel buildClientDto(String dataJson);
+    public ClientEntity buildClientDto(String dataJson);
 
 }
