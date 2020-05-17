@@ -9,6 +9,7 @@ import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
 import cm.thesupermarket.models.SortModel;
 import cm.thesupermarket.services.ClientService;
+import io.swagger.annotations.Api;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RestController
 @CrossOrigin
 @RequestMapping("/client")
+@Api(value = "clientstore")
 public class ClientRestController {
 
     private final ClientService clientService;
@@ -47,7 +48,7 @@ public class ClientRestController {
 
         ClientOutModel data = clientService.create(client);
         log.info("----------------- valeur {} ", "");
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(data, HttpStatus.OK);
 
     }
 
@@ -60,14 +61,6 @@ public class ClientRestController {
         List<ClientOutModel> data = clientService.getAll(client);
         log.info("----------------- valeur {} ", "");
         return new ResponseEntity<>(data, HttpStatus.OK);
-
-    }
-
-    @RequestMapping(value = "help", method = RequestMethod.POST, produces = {"application/json"})
-    @ResponseBody
-    public ResponseEntity<?> help() {
-
-        return new ResponseEntity<>("{data:test}", HttpStatus.OK);
 
     }
 
