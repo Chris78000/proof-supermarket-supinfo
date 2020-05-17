@@ -11,7 +11,10 @@ Repo for 4PROJ
 
 **Postgres password:** supinfo
 
-**Port:** 8082
+## API 
+
+**Port:** 8081
+**Context Path:** /v1
 
 ## Documentation Web - Swagger
 
