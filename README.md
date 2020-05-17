@@ -13,6 +13,6 @@ Repo for 4PROJ
 
 **Port:** 8082
 
-## Documentation Web
+## Documentation Web - Swagger
 
 http://localhost:8081/v1/swagger-ui.html
