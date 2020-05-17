@@ -8,4 +8,16 @@
     </parent>
     <artifactId>Controllers</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

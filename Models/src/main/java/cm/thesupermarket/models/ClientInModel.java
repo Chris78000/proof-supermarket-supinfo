@@ -6,6 +6,10 @@
 package cm.thesupermarket.models;
 
 import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -89,11 +93,11 @@ public class ClientInModel {
     }
 
     public String getPassword() {
-        return password;
+        return "zaeazea";
     }
 
     public void setPassword(String password) {
-        Validate.isTrue(!password.isEmpty() && password != null, "Json data can't contains empty or null element");
+
         this.password = password;
     }
 

@@ -6,7 +6,9 @@
 package cm.thesupermarket.services;
 
 import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.SortModel;
 import cm.thesupermarket.repository.IClientRepository;
 import dtoassembler.DtoToEntity;
 import dtoassembler.EntityToDto;
@@ -19,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -53,34 +58,35 @@ public class ClientService implements IClient {
 
     @Override
     @Transactional
-    public void delete(String dataJson) {
-        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
-        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+    public void delete(ClientInModel data) {
+        Validate.notNull(data, "data can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(data);
         clientRepository.delete(clientE);
 
     }
 
     @Override
     @Transactional
-    public ClientOutModel create(String dataJson) {
-        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
-        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+    public ClientOutModel create(ClientInModel data) {
+        Validate.notNull(data, "data can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(data);
         return entityToDto.buildClientDto(clientRepository.save(clientE));
     }
 
     @Override
     @Transactional
-    public ClientOutModel update(String dataJson) {
-        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
-        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
+    public ClientOutModel update(ClientInModel data) {
+        Validate.notNull(data, "data can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(data);
         return entityToDto.buildClientDto(clientRepository.save(clientE));
     }
 
     @Override
     @Transactional
-    public List<ClientOutModel> getAll(String dataJson) {
-        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
-        List<ClientEntity> clientE = clientRepository.findAll();
+    public List<ClientOutModel> getAll(SortModel sortModel) {
+        Validate.notNull(sortModel != null, "dataJson can't be empty or null");
+
+        Page<ClientEntity> clientE = clientRepository.findAll(PageRequest.of(sortModel.getPage(), sortModel.getSize()));
         List<ClientOutModel> data = new ArrayList<>();
         clientE.forEach((cnsmr) -> {
             data.add(entityToDto.buildClientDto(cnsmr));
@@ -91,11 +97,11 @@ public class ClientService implements IClient {
 
     @Override
     @Transactional
-    public ClientOutModel getClientById(String dataJson) {
-        Validate.isTrue(dataJson != null && !dataJson.isEmpty(), "dataJson can't be empty or null");
-        ClientEntity clientE = dtoToEntity.buildClientDto(dataJson);
-        ClientEntity data = clientRepository.getOne(clientE.getId());
-        return entityToDto.buildClientDto(data);
+    public ClientOutModel getClientById(ClientInModel data) {
+        Validate.notNull(data, "data can't be empty or null");
+        ClientEntity clientE = dtoToEntity.buildClientDto(data);
+        ClientEntity dataOut = clientRepository.getOne(clientE.getId());
+        return entityToDto.buildClientDto(dataOut);
 
     }
 

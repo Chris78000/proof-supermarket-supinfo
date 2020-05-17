@@ -8,6 +8,7 @@ package dtoassembler;
 import cm.thesupermarket.domain.ClientEntity;
 import cm.thesupermarket.domain.CountryEntity;
 import cm.thesupermarket.domain.SexEntity;
+import cm.thesupermarket.helpers.DateUtils;
 import cm.thesupermarket.helpers.EncrytedPasswordUtils;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
@@ -28,9 +29,9 @@ public class DtoToEntityImpl implements DtoToEntity {
     }
     
     @Override
-    public ClientEntity buildClientDto(String dataJson) {
-        Validate.notNull(dataJson, "Data from client is null, can't DTO");
-        ClientInModel data = new Gson().fromJson(dataJson, ClientInModel.class);
+    public ClientEntity buildClientDto(ClientInModel data) {
+        Validate.notNull(data, "Data from client is null, can't DTO");
+        //  ClientInModel data = new Gson().fromJson(data, ClientInModel.class);
         ClientEntity clientE = new ClientEntity();
         clientE.setId(data.getId());
         clientE.setName(data.getName());
@@ -39,6 +40,9 @@ public class DtoToEntityImpl implements DtoToEntity {
         clientE.setAge(data.getAge());
         clientE.setPhone(data.getPhone());
         clientE.setBirthday(data.getBirthday());
+        
+        clientE.setCreationDate(DateUtils.getTime());
+        clientE.setLastModifiedDate(DateUtils.getTime());
         
         SexEntity sexE = new SexEntity();
         sexE.setId(data.getSexId());

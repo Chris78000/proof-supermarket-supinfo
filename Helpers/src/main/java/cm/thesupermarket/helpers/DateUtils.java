@@ -8,6 +8,7 @@ package cm.thesupermarket.helpers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,13 @@ import java.util.logging.Logger;
  * @author ryank
  */
 public class DateUtils {
+
+    public static Date getTime() {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate = dateFormat.format(date);
+        return stringToDate(strDate);
+    }
 
     public static Date stringToDate(String date) {
 
