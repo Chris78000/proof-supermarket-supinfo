@@ -7,6 +7,7 @@ package cm.thesupermarket.controllers;
 
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.IdInModel;
 import cm.thesupermarket.models.SortModel;
 import cm.thesupermarket.services.ClientService;
 import io.swagger.annotations.Api;
@@ -51,6 +52,19 @@ public class ClientRestController {
         return new ResponseEntity<>(data, HttpStatus.OK);
 
     }
+    
+     @RequestMapping(value = "update", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> updateClient(
+            @RequestBody(required = true) ClientInModel client
+    // @RequestParam(value = "client", required = true) String client
+    ) {
+
+        ClientOutModel data = clientService.update(client);
+        log.info("----------------- valeur {} ", "");
+        return new ResponseEntity<>(data, HttpStatus.OK);
+
+    }
 
     @RequestMapping(value = "get", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
@@ -59,6 +73,18 @@ public class ClientRestController {
     ) {
 
         List<ClientOutModel> data = clientService.getAll(client);
+        log.info("----------------- valeur {} ", "");
+        return new ResponseEntity<>(data, HttpStatus.OK);
+
+    }
+    
+    @RequestMapping(value = "get/id", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> getClientById(
+            @RequestBody(required = true) IdInModel client
+    ) {
+
+        ClientOutModel data = clientService.getClientById(client);
         log.info("----------------- valeur {} ", "");
         return new ResponseEntity<>(data, HttpStatus.OK);
 

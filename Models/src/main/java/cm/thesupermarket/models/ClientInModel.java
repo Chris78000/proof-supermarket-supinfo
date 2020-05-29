@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -18,15 +19,26 @@ import org.apache.commons.lang.Validate;
  */
 public class ClientInModel {
 
+    @Min(value = 1L)
     private Long id;
     private String name;
     private String firstname;
+
+    @Past
     private Date birthday;
+
+    @Min(value = 18)
     private int age;
     private int phone;
+
+    @Email
     private String email;
     private String password;
+
+    @Min(value = 1L)
     private Long countryId;
+    
+    @Min(value = 1L)
     private Long sexId;
 
     public Long getId() {

@@ -7,6 +7,7 @@ package cm.thesupermarket.services;
 
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.IdInModel;
 import cm.thesupermarket.models.SortModel;
 import com.google.gson.Gson;
 import java.util.List;
@@ -25,6 +26,6 @@ public interface IClient {
 
     public List<ClientOutModel> getAll(SortModel sortModel);
 
-    public ClientOutModel getClientById(ClientInModel dataJson);
+    public ClientOutModel getClientById(IdInModel dataJson);
     //        Inscription ins = new Gson().fromJson(json, Inscription.class);  convertir json en classe
 }

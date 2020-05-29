@@ -8,6 +8,7 @@ package cm.thesupermarket.services;
 import cm.thesupermarket.domain.ClientEntity;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.IdInModel;
 import cm.thesupermarket.models.SortModel;
 import cm.thesupermarket.repository.IClientRepository;
 import dtoassembler.DtoToEntity;
@@ -97,12 +98,12 @@ public class ClientService implements IClient {
 
     @Override
     @Transactional
-    public ClientOutModel getClientById(ClientInModel data) {
+    public ClientOutModel getClientById(IdInModel data) {
         Validate.notNull(data, "data can't be empty or null");
-        ClientEntity clientE = dtoToEntity.buildClientDto(data);
-        ClientEntity dataOut = clientRepository.getOne(clientE.getId());
+        ClientEntity dataOut = null; //clientRepository.getOne(data.getId());
         return entityToDto.buildClientDto(dataOut);
 
     }
-
 }
+
+
