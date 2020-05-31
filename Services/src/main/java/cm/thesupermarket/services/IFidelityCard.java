@@ -5,10 +5,18 @@
  */
 package cm.thesupermarket.services;
 
+import cm.thesupermarket.models.FidelityCardInModel;
+import cm.thesupermarket.models.FidelityCardOutModel;
+import cm.thesupermarket.models.IdInModel;
+
 /**
  *
  * @author ryank
  */
 public interface IFidelityCard {
     
+    public void createFidelityCard(FidelityCardInModel data);
+    public void updateFidelityCard(FidelityCardInModel data);
+    public void removeFidelityCard(FidelityCardInModel data);
+    public FidelityCardOutModel getFidelityCard(IdInModel data);
 }
