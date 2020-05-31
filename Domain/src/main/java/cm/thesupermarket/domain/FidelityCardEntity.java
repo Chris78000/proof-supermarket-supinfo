@@ -62,8 +62,8 @@ public class FidelityCardEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiredDate;
 
-    @Column(name = "point", nullable = false, unique = false)
-    private int point;
+    @Column(name = "point", nullable = false, unique = false, columnDefinition = "default '0.0'")
+    private Long point;
 
     @Column(name = "numero", nullable = false, unique = true)
     private String numero;
@@ -110,11 +110,11 @@ public class FidelityCardEntity implements Serializable, Persistable<Long> {
         this.expiredDate = expiredDate;
     }
 
-    public int getPoint() {
+    public Long getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(Long point) {
         this.point = point;
     }
 

@@ -5,6 +5,9 @@
  */
 package cm.thesupermarket.services;
 
+import cm.thesupermarket.models.ClientHasFavoritesInModel;
+import cm.thesupermarket.models.ClientHasShippingAddressInModel;
+import cm.thesupermarket.models.ClientHasShippingCardInModel;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
 import cm.thesupermarket.models.IdInModel;
@@ -28,4 +31,11 @@ public interface IClient {
 
     public ClientOutModel getClientById(IdInModel dataJson);
     //        Inscription ins = new Gson().fromJson(json, Inscription.class);  convertir json en classe
+
+    public void setClientHasFavorites(ClientHasFavoritesInModel dataJson);
+
+    public void setClientHasShippingAddress(ClientHasShippingAddressInModel dataJson);
+
+    public void setClientHasShippingCard(ClientHasShippingCardInModel dataJson);
+
 }

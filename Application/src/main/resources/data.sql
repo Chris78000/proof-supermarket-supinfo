@@ -255,3 +255,9 @@ INSERT INTO country (id, iso_code, country_name, tel_indicative_code, currency_n
   (244, 'YU', 'Yugoslavia', 38, '', '', ''),
   (245, 'ZM', 'Zambia', 260, 'Zambian kwacha', 'ZK', 'ZMW'),
   (246, 'ZW', 'Zimbabwe', 263, 'Botswana pula', 'P', 'BWP');
+
+
+INSERT INTO sex (id, name, creation_date) VALUES 
+(1, 'Male', now()),
+(2, 'Female', now()),
+(3, 'Others', now());

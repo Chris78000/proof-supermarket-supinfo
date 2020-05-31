@@ -111,16 +111,11 @@ public class ClientEntity implements Serializable, Persistable<Long> {
     @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private final List<ClientHasFavoritesEntity> clientHasFavoritesList;
-
-    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private final List<ShippingCardEntity> shippingCardList;
     
     
     public ClientEntity() {
         this.fidelityCardList = new ArrayList<>();
         this.clientHasShippingAddressList = new ArrayList<>();
-        this.shippingCardList = new ArrayList<>();
         this.clientHasShippingCardList = new ArrayList<>();
         this.clientHasFavoritesList = new ArrayList<>();
     }

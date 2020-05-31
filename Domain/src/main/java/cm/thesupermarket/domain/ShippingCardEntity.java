@@ -66,10 +66,6 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId", nullable = false, updatable = false)
-    private ClientEntity clientId;
-
     @Column(name = "productsId", nullable = false, unique = false)
     private String productsId;
 
@@ -111,14 +107,6 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public ClientEntity getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(ClientEntity clientId) {
-        this.clientId = clientId;
-    }
-
     public String getProductsId() {
         return productsId;
     }
@@ -131,7 +119,6 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
     @PreUpdate
     protected void prePersistAndPreUpdate() {
         Validate.notNull(creationDate, "createDate must not be null");
-        Validate.notNull(clientId, "clientId can't be null");
         Validate.isTrue(creationDate.getTime() < System.currentTimeMillis(), "creationDate cannot be in the past");
     }
 
