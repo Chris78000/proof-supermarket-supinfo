@@ -7,6 +7,7 @@ package dtoassembler;
 
 import cm.thesupermarket.domain.ClientEntity;
 import cm.thesupermarket.domain.FavoritesEntity;
+import cm.thesupermarket.domain.FidelityCardEntity;
 import cm.thesupermarket.domain.ShippingAddressEntity;
 import cm.thesupermarket.domain.ShippingCardEntity;
 import cm.thesupermarket.models.ClientHasFavoritesInModel;
@@ -14,6 +15,7 @@ import cm.thesupermarket.models.ClientHasShippingAddressInModel;
 import cm.thesupermarket.models.ClientHasShippingCardInModel;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.FidelityCardInModel;
 import com.google.gson.Gson;
 
 /**
@@ -29,6 +31,9 @@ public interface DtoToEntity {
     public ShippingAddressEntity buildShippingAddressEntityDto(ClientHasShippingAddressInModel data);
 
     public ShippingCardEntity buildShippingAddressCardEntityDto(ClientHasShippingCardInModel data);
-    //  public ClientHasFavoritesEntity buildClientHasFavoritesEntityDto();
+
+    public FidelityCardEntity buildFidelityCardEntityDto(FidelityCardInModel data);
+    
+//  public ClientHasFavoritesEntity buildClientHasFavoritesEntityDto();
 
 }

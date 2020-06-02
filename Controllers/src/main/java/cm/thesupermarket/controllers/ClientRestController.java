@@ -5,6 +5,9 @@
  */
 package cm.thesupermarket.controllers;
 
+import cm.thesupermarket.models.ClientHasFavoritesInModel;
+import cm.thesupermarket.models.ClientHasShippingAddressInModel;
+import cm.thesupermarket.models.ClientHasShippingCardInModel;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
 import cm.thesupermarket.models.IdInModel;
@@ -30,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RestController
 @CrossOrigin
 @RequestMapping("/client")
-@Api(value = "clientstore")
+@Api(value = "Client")
 public class ClientRestController {
 
     private final ClientService clientService;
@@ -52,8 +55,8 @@ public class ClientRestController {
         return new ResponseEntity<>(data, HttpStatus.OK);
 
     }
-    
-     @RequestMapping(value = "update", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+
+    @RequestMapping(value = "update", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
     public ResponseEntity<?> updateClient(
             @RequestBody(required = true) ClientInModel client
@@ -77,7 +80,7 @@ public class ClientRestController {
         return new ResponseEntity<>(data, HttpStatus.OK);
 
     }
-    
+
     @RequestMapping(value = "get/id", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
     public ResponseEntity<?> getClientById(
@@ -87,6 +90,42 @@ public class ClientRestController {
         ClientOutModel data = clientService.getClientById(client);
         log.info("----------------- valeur {} ", "");
         return new ResponseEntity<>(data, HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "add/favorites", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> addFavorites(
+            @RequestBody(required = true) ClientHasFavoritesInModel client
+    ) {
+
+        clientService.setClientHasFavorites(client);
+        log.info("----------------- valeur {} ", "");
+        return new ResponseEntity<>("Well donne !", HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "add/shipping_address", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> addShippingAddress(
+            @RequestBody(required = true) ClientHasShippingAddressInModel client
+    ) {
+
+        clientService.setClientHasShippingAddress(client);
+        log.info("----------------- valeur {} ", "");
+        return new ResponseEntity<>("Well donne !", HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "add/shipping_card", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> addShippingCard(
+            @RequestBody(required = true) ClientHasShippingCardInModel client
+    ) {
+
+        clientService.setClientHasShippingCard(client);
+        log.info("----------------- valeur {} ", "");
+        return new ResponseEntity<>("Well donne !", HttpStatus.OK);
 
     }
 

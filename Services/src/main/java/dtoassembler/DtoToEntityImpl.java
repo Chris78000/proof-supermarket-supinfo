@@ -8,6 +8,7 @@ package dtoassembler;
 import cm.thesupermarket.domain.ClientEntity;
 import cm.thesupermarket.domain.CountryEntity;
 import cm.thesupermarket.domain.FavoritesEntity;
+import cm.thesupermarket.domain.FidelityCardEntity;
 import cm.thesupermarket.domain.SexEntity;
 import cm.thesupermarket.domain.ShippingAddressEntity;
 import cm.thesupermarket.domain.ShippingCardEntity;
@@ -18,6 +19,7 @@ import cm.thesupermarket.models.ClientHasShippingAddressInModel;
 import cm.thesupermarket.models.ClientHasShippingCardInModel;
 import cm.thesupermarket.models.ClientInModel;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.FidelityCardInModel;
 import com.google.gson.Gson;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
@@ -86,7 +88,27 @@ public class DtoToEntityImpl implements DtoToEntity {
 
     @Override
     public ShippingCardEntity buildShippingAddressCardEntityDto(ClientHasShippingCardInModel data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ShippingCardEntity shipC = new ShippingCardEntity();
+        shipC.setCreationDate(DateUtils.getTime());
+        shipC.setLastModifiedDate(DateUtils.getTime());
+        shipC.setProductsId(data.getProductsId());
+        shipC.setId(data.getClientId());
+        return shipC;
+    }
+
+    @Override
+    public FidelityCardEntity buildFidelityCardEntityDto(FidelityCardInModel data) {
+        FidelityCardEntity fideC = new FidelityCardEntity();
+
+        ClientEntity client = new ClientEntity();
+        client.setId(data.getClientId());
+        fideC.setClientId(client);
+        fideC.setCreationDate(DateUtils.getTime());
+        fideC.setLastModifiedDate(DateUtils.getTime());
+        fideC.setExpiredDate(data.getExpiredDate());
+        fideC.setNumero(data.getNumero());
+        fideC.setPoint(data.getPoint());
+        return fideC;
     }
 
 }

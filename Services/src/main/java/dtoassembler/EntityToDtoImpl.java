@@ -6,15 +6,17 @@
 package dtoassembler;
 
 import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.domain.FidelityCardEntity;
 import cm.thesupermarket.helpers.DateUtils;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.FidelityCardOutModel;
 
 /**
  *
  * @author ryank
  */
 public class EntityToDtoImpl implements EntityToDto {
-    
+
     @Override
     public ClientOutModel buildClientDto(ClientEntity clientE) {
         ClientOutModel data = new ClientOutModel();
@@ -29,5 +31,17 @@ public class EntityToDtoImpl implements EntityToDto {
         data.setCreatedDate(DateUtils.convertMillisToDate(clientE.getCreationDate()));
         return data;
     }
-    
+
+    @Override
+    public FidelityCardOutModel buildFidelityCardDto(FidelityCardEntity fidelityCard) {
+        FidelityCardOutModel data = new FidelityCardOutModel();
+        data.setClientId(fidelityCard.getId());
+        data.setCreationDate(DateUtils.convertMillisToDate(fidelityCard.getCreationDate()));
+        data.setExpiredDate(DateUtils.convertMillisToDate(fidelityCard.getExpiredDate()));
+        data.setLastModifiedDate(DateUtils.convertMillisToDate(fidelityCard.getLastModifiedDate()));
+        data.setNumero(fidelityCard.getNumero());
+        data.setPoint(fidelityCard.getPoint());
+        return data;
+    }
+
 }

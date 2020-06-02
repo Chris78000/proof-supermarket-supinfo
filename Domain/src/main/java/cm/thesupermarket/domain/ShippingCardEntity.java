@@ -67,7 +67,7 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
     private Date lastModifiedDate;
 
     @Column(name = "productsId", nullable = false, unique = false)
-    private String productsId;
+    private Long productsId;
 
     @OneToMany(mappedBy = "shippingCardId", cascade = CascadeType.ALL, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -107,11 +107,11 @@ public class ShippingCardEntity implements Serializable, Persistable<Long> {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public String getProductsId() {
+    public Long getProductsId() {
         return productsId;
     }
 
-    public void setProductsId(String productsId) {
+    public void setProductsId(Long productsId) {
         this.productsId = productsId;
     }
 

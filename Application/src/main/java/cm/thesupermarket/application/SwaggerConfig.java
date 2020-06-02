@@ -28,7 +28,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cm.thesupermarket.controllers"))
-                .paths(regex("/client.*"))
+                // .paths(regex("/client.*"))
                 .build()
                 .apiInfo(metaData());
     }

@@ -5,6 +5,7 @@
  */
 package cm.thesupermarket.services;
 
+import cm.thesupermarket.domain.FidelityCardEntity;
 import cm.thesupermarket.models.FidelityCardInModel;
 import cm.thesupermarket.models.FidelityCardOutModel;
 import cm.thesupermarket.models.IdInModel;
@@ -47,22 +48,28 @@ public class FidelityCardService implements IFidelityCard {
 
     @Override
     public void createFidelityCard(FidelityCardInModel data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notNull(data, "");
+
     }
 
     @Override
     public void updateFidelityCard(FidelityCardInModel data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FidelityCardEntity fidelityCE = dtoToEntity.buildFidelityCardEntityDto(data);
+        fidelityCardRepository.save(fidelityCE);
+
     }
 
     @Override
     public void removeFidelityCard(FidelityCardInModel data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notNull(data, "");
+        fidelityCardRepository.delete(dtoToEntity.buildFidelityCardEntityDto(data));
     }
 
     @Override
     public FidelityCardOutModel getFidelityCard(IdInModel data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notNull(data);
+        FidelityCardEntity fidelityCard = fidelityCardRepository.getOne(data.getId());
+        return entityToDto.buildFidelityCardDto(fidelityCard);
     }
 
 }

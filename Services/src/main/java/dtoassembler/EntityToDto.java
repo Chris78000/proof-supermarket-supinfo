@@ -6,7 +6,9 @@
 package dtoassembler;
 
 import cm.thesupermarket.domain.ClientEntity;
+import cm.thesupermarket.domain.FidelityCardEntity;
 import cm.thesupermarket.models.ClientOutModel;
+import cm.thesupermarket.models.FidelityCardOutModel;
 
 /**
  *
@@ -15,5 +17,7 @@ import cm.thesupermarket.models.ClientOutModel;
 public interface EntityToDto {
 
     public ClientOutModel buildClientDto(ClientEntity clientE);
+
+    public FidelityCardOutModel buildFidelityCardDto(FidelityCardEntity fidelityCard);
     
 }
