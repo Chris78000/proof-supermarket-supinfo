@@ -30,6 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Dev
 - Module CLient
 - Module Admin
-- Module Stocks
+- Module Produit
 
 
