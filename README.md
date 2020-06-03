@@ -4,13 +4,11 @@ Repo for 4PROJ
 ## Module de l'API 
 
 - Module Authentification
-- Module Achat
-| Module Stock
+- Module Produit (stock, achat, fournisseur)
 - Module Paiement (différents types de paiements proposés)
 - Module Commandes
 - Module Drive (sur place)
 - Module Livraison (à domicile)
-- Module Fournisseur
 - Module Sensor
 - Module Data (analyse données et envoi superviseur)
 | Module Client
