@@ -5,7 +5,7 @@ Repo for 4PROJ
 
 ## Database configuration
 
-**Database name:** admin_account_thesupermarket
+**Database name:** admin_thesupermarket
 
 **Postgres user:** thesupermarket
 
@@ -19,4 +19,4 @@ Repo for 4PROJ
 
 ## Documentation Web - Swagger
 
-http://localhost:8081/v1/swagger-ui.html
+http://localhost:8082/v1/swagger-ui.html
