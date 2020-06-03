@@ -1,7 +1,7 @@
 # proof-supermarket-supinfo
 Repo for 4PROJ
 
-# ACCOUNT APPLICATION - Micro Service 
+# PRODUCTS APPLICATION - Micro Service 
 
 ## Database configuration
 
