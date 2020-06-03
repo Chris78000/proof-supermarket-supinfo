@@ -6,9 +6,7 @@ Repo for 4PROJ
 - Module Authentification
 - Module Produit (stock, achat, fournisseur)
 - Module Paiement (différents types de paiements proposés)
-- Module Commandes
-- Module Drive (sur place)
-- Module Livraison (à domicile)
+- Module Commandes (livraison et drive)
 - Module Sensor
 - Module Data (analyse données et envoi superviseur)
 | Module Client
