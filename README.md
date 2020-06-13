@@ -11,7 +11,7 @@ Repo for 4PROJ
 - Module Data (analyse données et envoi superviseur)
 - Module Client
 - Module Admin (Account)
-- Module Caisse
+- Module Caisse (REMOVE)
 - Module Promo
 - Module Notification
 
