@@ -4,44 +4,44 @@ Repo for 4PROJ
 ## Module de l'API 
 
 
-    - Module Authentification
+  - Module Authentification
 	
 	Gére les services d'authentification, droit d'accés et d'autorisation
 	
-    - Module Produit (stock, achat, fournisseur)
+  - Module Produit (stock, achat, fournisseur)
 	
 	Gére le stock de produit, les achats de produit et les fournisseur de produit
 	
-    - Module Paiement (différents types de paiements proposés)
+  - Module Paiement (différents types de paiements proposés)
 	
 	Gére les services de paiement (carte bancaire, paypal, ...)
 	
-    - Module Commandes (livraison et drive)
+  - Module Commandes (livraison et drive)
 	
 	Gére les commandes de produit et leur état, ainsi que le Drive
 	
-    - Module Sensor
+  - Module Sensor
 	
 	Gere les capteurs (caméra, cinaise, tablette de prix, gps, ...) de la solution
 	
-    - Module Data (analyse données et envoi superviseur)
+  - Module Data (analyse données et envoi superviseur)
 	
 	Extrait, transforme et charge les données pour les rendres disponible (à travers un portail) au outils de 
 	Bissness Intelligence et de Data Analytics et Data Science
 	
-    - Module Client
+  - Module Client
 	
 	Gére le compte client, ses informations, et son activité 
 	
-    - Module Admin (Account)
+  - Module Admin (Account)
 	
 	Gére les comptes des employées, les informations, activité, journal et autre
 	
-     - Module Promo
+  - Module Promo
 	
 	Gére la programmation des promotions, réduction et autre
 	
-     - Module Notification
+  - Module Notification
 
 	Gére les notifications SMS, EMAIL, ... 
 
